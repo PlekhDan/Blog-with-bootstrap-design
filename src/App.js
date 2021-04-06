@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
+import {Menu} from "./components/Menu";
+import {PageHeader} from "./components/PageHeader";
+import {PostsList} from "./components/PostsList";
+import {Footer} from "./components/Footer";
+import {BrowserRouter, Route} from "react-router-dom";
+import {About} from "./components/About";
+import {Contacts} from "./components/Contacts";
+import {Post} from "./components/Post";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.changeH1 = this.changeH1.bind(this);
+        this.state = {
+            h1: ""
+        }
+    }
+
+    changeH1(title) {
+        this.setState({
+            h1: title
+        })
+}
+
+    render() {
+        return (
+            <div>
+                <BrowserRouter>
+                    <Menu/>
+                    <PageHeader h1={this.state.h1}/>
+                    <Route exact path="/" render={() => <PostsList changeH1={this.changeH1}/>}/>
+                    <Route path="/about" render={() => <About changeH1={this.changeH1}/>}/>
+                    <Route path="/contacts" render={() => <Contacts changeH1={this.changeH1}/>}/>
+                    <Route path="/post/:id" render={(props) => <Post changeH1={this.changeH1} {...props}/>}/>
+                    <hr/>
+                    <Footer/>
+                </BrowserRouter>
+            </div>
+        );
+    }
 }
 
 export default App;
