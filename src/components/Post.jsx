@@ -33,7 +33,8 @@ export class Post extends React.Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-8 col-md-10 mx-auto">
-                            <p>{this.state.text}</p>
+                            <p dangerouslySetInnerHTML={{__html: this.state.text}}/> {/* Так можно делать только если довеляешь источнику.*/}
+                            {/*<p>{this.state.text}</p>*/}
 
                             <h2 className="section-heading">The Final Frontier</h2>
 

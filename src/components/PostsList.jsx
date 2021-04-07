@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {Post} from "./Post";
 
 function PreviewPost(props) {
-    return(
+    return (
         <div className="post-preview">
             <Link to={`/post/${props.id}`}>
                 <h2 className="post-title">
@@ -35,14 +35,19 @@ export class PostsList extends React.Component {
             .then(response => response.json())
             .then(result => {
                 this.setState({
-                    posts: result.map(post => <PreviewPost
-                        key = {post.id}
-                        id = {post.id}
-                        title = {post.title}
-                        text = {post.text.slice(0, 50) + " ..."}
-                        author = {post.author}
-                        date_added = {post.date_added}
-                    />)
+                    posts: result.map(post => {
+                        const parser = new DOMParser(); // Из html вытаскиваем текст.
+                        const html = parser.parseFromString(post.text, "text/html");
+                        return (
+                            <PreviewPost
+                                key={post.id}
+                                id={post.id}
+                                title={post.title}
+                                text={html.body.innerText.slice(0, 50) + " ..."}
+                                author={post.author}
+                                date_added={post.date_added}
+                            />)
+                    })
                 })
             })
     }

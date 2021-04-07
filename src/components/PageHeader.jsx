@@ -8,7 +8,7 @@ export class PageHeader extends React.Component {
 
     render() {
         return (
-            <header className="masthead" style={{backgroundImage: "url('img/home-bg.jpg')"}}>
+            <header className="masthead" style={{backgroundImage: "url('/img/home-bg.jpg')"}}>
                 <div className="overlay"/>
                 <div className="container">
                     <div className="row">

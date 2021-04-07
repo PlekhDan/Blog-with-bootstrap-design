@@ -15,21 +15,20 @@ export class Contacts extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-8 col-md-10 mx-auto">
-                        <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you
-                            as soon as possible!</p>
+                        <p>Свяжитесь с нами, для проработки Вашего вопроса!</p>
                         <form name="sentMessage" id="contactForm" noValidate>
                             <div className="control-group">
                                 <div className="form-group floating-label-form-group controls">
-                                    <label>Name</label>
-                                    <input type="text" className="form-control" placeholder="Name" id="name" required
+                                    <label>Имя</label>
+                                    <input type="text" className="form-control" placeholder="Имя" id="name" required
                                            data-validation-required-message="Please enter your name."/>
                                         <p className="help-block text-danger"/>
                                 </div>
                             </div>
                             <div className="control-group">
                                 <div className="form-group floating-label-form-group controls">
-                                    <label>Email Address</label>
-                                    <input type="email" className="form-control" placeholder="Email Address" id="email"
+                                    <label>E-mail</label>
+                                    <input type="email" className="form-control" placeholder="E-mail"
                                            required data-validation-required-message="Please enter your email address."/>
                                         <p className="help-block text-danger"/>
                                 </div>
@@ -37,15 +36,15 @@ export class Contacts extends React.Component {
                             <div className="control-group">
                                 <div className="form-group col-xs-12 floating-label-form-group controls">
                                     <label>Phone Number</label>
-                                    <input type="tel" className="form-control" placeholder="Phone Number" id="phone"
+                                    <input type="tel" className="form-control" placeholder="+7 (990) 800-35-35" id="phone"
                                            required data-validation-required-message="Please enter your phone number."/>
                                         <p className="help-block text-danger"/>
                                 </div>
                             </div>
                             <div className="control-group">
                                 <div className="form-group floating-label-form-group controls">
-                                    <label>Message</label>
-                                    <textarea rows="5" className="form-control" placeholder="Message" id="message"
+                                    <label>Ваше сообщение</label>
+                                    <textarea rows="5" className="form-control" placeholder="Ваше сообщение" id="message"
                                               required
                                               data-validation-required-message="Please enter a message."/>
                                     <p className="help-block text-danger"/>
@@ -53,7 +52,7 @@ export class Contacts extends React.Component {
                             </div>
                             <br/>
                                 <div id="success"/>
-                                <button type="submit" className="btn btn-primary" id="sendMessageButton">Send</button>
+                                <button type="submit" className="btn btn-primary" id="sendMessageButton">Отправить</button>
                         </form>
                     </div>
                 </div>
