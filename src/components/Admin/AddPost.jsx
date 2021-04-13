@@ -16,7 +16,7 @@ export class AddPost extends React.Component {
     }
 
     componentDidMount() {
-        this.props.changeH1("Создание статьи");
+        // this.props.changeH1("Создание статьи");
         console.log(this.sunEditorRef);
     }
 
@@ -48,7 +48,9 @@ export class AddPost extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-8 col-md-10 mx-auto">
-                        <p>Создайте свою неповторимую статью и поделитесь ей с миром!</p>
+                        <blockquote className="blockquote text-center my-5">
+                            Создайте свою неповторимую статью и поделитесь ей с миром!
+                        </blockquote>
                         <form onSubmit={this.handlerSubmit} name="sentMessage" id="contactForm" noValidate>
                             <div className="control-group">
                                 <div className="form-group floating-label-form-group controls">
@@ -81,7 +83,8 @@ export class AddPost extends React.Component {
                                                       })
                                                   }}
                                                   height="400px"
-                                                  placeholder="Текст статьи"/>
+                                                  placeholder="Текст статьи"
+                                              />
                                     <p className="help-block text-danger"/>
                                 </div>
                             </div>

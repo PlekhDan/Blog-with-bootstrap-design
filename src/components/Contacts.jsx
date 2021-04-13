@@ -15,7 +15,9 @@ export class Contacts extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-8 col-md-10 mx-auto">
-                        <p>Свяжитесь с нами, для проработки Вашего вопроса!</p>
+                        <blockquote className="blockquote text-center mb-5">
+                            Свяжитесь с нами, для проработки Вашего вопроса!
+                        </blockquote>
                         <form name="sentMessage" id="contactForm" noValidate>
                             <div className="control-group">
                                 <div className="form-group floating-label-form-group controls">

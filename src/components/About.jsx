@@ -14,7 +14,11 @@ export class About extends React.Component {
         return(
             <div className="container">
                 <div className="row">
+
                     <div className="col-lg-8 col-md-10 mx-auto">
+                        <blockquote className="blockquote text-center mb-5">
+                            Немного о нашем блоге!
+                        </blockquote>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet
                             pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi
                             maxime quae totam ducimus consectetur?</p>
