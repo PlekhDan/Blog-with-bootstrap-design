@@ -31,8 +31,8 @@ export class PostsList extends React.Component {
 
     componentDidMount() {
         this.props.changeH1("Главная страница");
-        // fetch("http://localhost/php/getArticles.php") Запрос на локальный сервер на своем компе.
-        fetch("http://p9152834.beget.tech/php/getArticles.php")
+        // fetch("http://localhost/php/getArticles.php") //Запрос на локальный сервер на своем компе.
+        fetch("http://p9152834.beget.tech/getArticles")
             .then(response => response.json())
             .then(result => {
                 this.setState({

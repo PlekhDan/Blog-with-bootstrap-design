@@ -15,12 +15,12 @@ export class Post extends React.Component {
     componentDidMount() {
         const formData = new FormData;
         formData.append("id", this.props.match.params.id);
-        fetch("http://p9152834.beget.tech/php/getIdArticle.php", {
+        fetch("http://p9152834.beget.tech/getIdArticle", {
             method: "POST",
             body: formData
         }).then(response => response.json())
             .then(result => {
-                this.props.changeH1(result.title)
+                this.props.changeH1(result.title);
                 this.setState( {
                     text: result.text
                 })
