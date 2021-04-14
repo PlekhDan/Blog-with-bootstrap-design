@@ -19,14 +19,17 @@ export class AddCategory extends React.Component {
     }
 
     handlerSubmit(event) {
+        event.preventDefault();
         const formData = new FormData();
         formData.append("category", this.state.category);
-        fetch("http://p9152834.beget.tech/php/addCategory.php", {
+        fetch("http://p9152834.beget.tech/addCategory", {
             method: "POST",
             body: formData
         }).then(response => response.json())
             .then(result => {
-                console.log(result);
+                if(result.result === "success") {
+                    alert("Категория добавлена");
+                }
             })
     }
 
@@ -38,7 +41,7 @@ export class AddCategory extends React.Component {
                         <blockquote className="blockquote text-center my-5">
                             Создайте новую категорию!
                         </blockquote>
-                        <form name="sentMessage" id="contactForm" noValidate>
+                        <form onSubmit={this.handlerSubmit} name="sentMessage" id="contactForm" noValidate>
                             <div className="control-group">
                                 <div className="form-group col-xs-12 floating-label-form-group controls">
                                     <label>Новая категория</label>

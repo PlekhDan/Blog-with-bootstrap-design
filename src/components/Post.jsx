@@ -15,6 +15,7 @@ export class Post extends React.Component {
     componentDidMount() {
         const formData = new FormData;
         formData.append("id", this.props.match.params.id);
+        console.log()
         fetch("http://p9152834.beget.tech/getIdArticle", {
             method: "POST",
             body: formData
