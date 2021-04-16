@@ -24,7 +24,7 @@ export class Auth extends React.Component {
         const formData = new FormData();
         formData.append("email", this.state.email);
         formData.append("password", this.state.password);
-        fetch("http://p9152834.beget.tech/php/hendlerAuth.php", {
+        fetch("http://p9152834.beget.tech/hendlerAuth", {
             method: "POST",
             body: formData
         }).then(response => response.json())

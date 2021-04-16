@@ -44,7 +44,7 @@ export class PostsList extends React.Component {
                                 key={post.id}
                                 id={post.id}
                                 title={post.title}
-                                text={html.body.innerText.slice(0, 50) + " ..."}
+                                text={html.body.innerText.slice(0, 40) + " ..."}
                                 author={post.author}
                                 date_added={post.date_added}
                             />)

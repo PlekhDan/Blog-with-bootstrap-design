@@ -1,9 +1,9 @@
 import React from "react";
 import {Auth} from "./Auth";
-import {AddPost} from "./AddPost";
 import {AdminMenu} from "./AdminMenu";
 import {Switch, Route} from "react-router-dom";
 import {AddCategory} from "./AddCategory";
+import {AddPost} from "./AddPost";
 
 export class Admin extends React.Component {
     constructor(props) {

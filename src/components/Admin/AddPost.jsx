@@ -2,6 +2,38 @@ import React from "react";
 import SunEditor from "suneditor-react";
 import 'suneditor/dist/css/suneditor.min.css';
 
+class AddCategoryInput extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handlerInput = this.handlerInput.bind(this);
+        this.state = {
+            newCategory: ""
+        }
+    }
+    handlerInput(event) {
+        const name = event.target.name;
+        const value = event.target.value;
+        this.setState({
+            [name]: value
+        });
+        this.props.parent.setState({
+            newCategory: value
+        })
+        console.log(this.props.parent.state.newCategory);
+    }
+    render() {
+        return(
+            <input value={this.state.newCategory}
+                   onChange={this.handlerInput}
+                   name="newCategory" type="text"
+                   className="form-control mb-4"
+                   placeholder="Новая категория"/>
+        );
+    }
+}
+
+
+
 export class AddPost extends React.Component {
     constructor(props) {
         super(props);
@@ -11,13 +43,23 @@ export class AddPost extends React.Component {
         this.state = {
             title: "",
             text: "",
-            author: ""
+            author: "",
+            viewCategory: "",
+            category: "",
+            newCategory: "",
+            addNewCategory: ""
         }
     }
 
     componentDidMount() {
-        // this.props.changeH1("Создание статьи");
-        console.log(this.sunEditorRef);
+        this.props.changeH1("Создание статьи");
+        fetch("http://p9152834.beget.tech/getCategory")
+            .then(response => response.json())
+            .then(result => {
+                this.setState({
+                    viewCategory: result.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)
+                })
+            })
     }
 
     handlerInput(event) {
@@ -26,6 +68,12 @@ export class AddPost extends React.Component {
         this.setState({
             [name]: value
         })
+        if(name === "category" && value === "addNew") {
+            this.setState({
+                addNewCategory: <AddCategoryInput parent={this}/>,
+                newCategory: value
+            })
+        }
     }
 
     handlerSubmit(event) {
@@ -34,6 +82,8 @@ export class AddPost extends React.Component {
         formData.append("title", this.state.title);
         formData.append("text", this.state.text);
         formData.append("author", this.state.author);
+        formData.append("category", this.state.category);
+        formData.append("newCategory", this.state.newCategory);
         fetch("http://p9152834.beget.tech/addArticle", {
             method: "POST",
             body: formData
@@ -86,6 +136,18 @@ export class AddPost extends React.Component {
                                                   placeholder="Текст статьи"
                                               />
                                     <p className="help-block text-danger"/>
+                                </div>
+                            </div>
+                            <div className="control-group">
+                                <div className="form-group col-xs-12 floating-label-form-group controls p-0">
+                                    <select value={this.state.category}
+                                            onChange={this.handlerInput}
+                                            name="category"
+                                            className="form-control my-4">
+                                        {this.state.viewCategory}
+                                        <option value="addNew">+ Добавить категорию +</option>
+                                    </select>
+                                    {this.state.addNewCategory}
                                 </div>
                             </div>
                             <div className="control-group">
