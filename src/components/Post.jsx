@@ -3,22 +3,6 @@ import {host} from "../config";
 import {Link} from "react-router-dom";
 
 
-// function Preview(props) {
-//     return(
-//         <div>
-//             <blockquote className="blockquote">Категория: &nbsp;
-//                 <Link to="#">{props.category}</Link>
-//             </blockquote>
-//             <p>{props.text}</p>
-//             <blockquote className="blockquote">Опубликовал(а) &nbsp;
-//                 <Link to="#">{props.author}</Link> &nbsp;
-//                 {props.date_added}
-//             </blockquote>
-//         </div>
-//     );
-// }
-
-
 export class Post extends React.Component {
 
     constructor(props) {
