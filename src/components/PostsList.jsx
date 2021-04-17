@@ -40,14 +40,15 @@ export class PostsList extends React.Component {
                     posts: result.map(post => {
                         const parser = new DOMParser(); // Из html вытаскиваем текст.
                         const html = parser.parseFromString(post.text, "text/html");
+                        const date = new Date(post.date_added);
                         return (
                             <PreviewPost
                                 key={post.id}
                                 id={post.id}
                                 title={post.title}
-                                text={html.body.innerText.slice(0, 40) + " ..."}
+                                text={html.body.innerText.slice(0, 45) + " ..."}
                                 author={post.author}
-                                date_added={post.date_added}
+                                date_added={date.toLocaleDateString()}
                             />)
                     })
                 })

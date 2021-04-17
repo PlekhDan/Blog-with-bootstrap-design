@@ -1,5 +1,23 @@
 import React from "react";
 import {host} from "../config";
+import {Link} from "react-router-dom";
+
+
+// function Preview(props) {
+//     return(
+//         <div>
+//             <blockquote className="blockquote">Категория: &nbsp;
+//                 <Link to="#">{props.category}</Link>
+//             </blockquote>
+//             <p>{props.text}</p>
+//             <blockquote className="blockquote">Опубликовал(а) &nbsp;
+//                 <Link to="#">{props.author}</Link> &nbsp;
+//                 {props.date_added}
+//             </blockquote>
+//         </div>
+//     );
+// }
+
 
 export class Post extends React.Component {
 
@@ -9,22 +27,30 @@ export class Post extends React.Component {
             title: "",
             text: "",
             author: "",
-            date_added: ""
+            date_added: "",
+            category: ""
         }
     }
 
     componentDidMount() {
         const formData = new FormData;
-        formData.append("id", this.props.match.params.id);
-        console.log()
+        formData.append("id", this.props.match.params.id); //this.props.match.params.id
+        console.log(this.props.match.params.id);
         fetch(host+"/getIdArticle", {
             method: "POST",
             body: formData
         }).then(response => response.json())
             .then(result => {
                 this.props.changeH1(result.title);
+                const parser = new DOMParser(); // Из html вытаскиваем текст.
+                const html = parser.parseFromString(result.text, "text/html");
+                const date = new Date(result.date_added);
                 this.setState( {
-                    text: result.text
+                    id: result.id,
+                    text: html.body.innerText,
+                    author: result.author,
+                    date_added: date.toLocaleDateString(),
+                    category: result.category
                 })
             })
     }
@@ -35,31 +61,15 @@ export class Post extends React.Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-8 col-md-10 mx-auto">
-                            <p dangerouslySetInnerHTML={{__html: this.state.text}}/> {/* Так можно делать только если довеляешь источнику.*/}
-                            {/*<p>{this.state.text}</p>*/}
-
-                            <h2 className="section-heading">The Final Frontier</h2>
-
-                            <p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and
-                                literally, it is a task to occupy the generations. And no matter how much progress one
-                                makes, there is always the thrill of just beginning.</p>
-
-                            <p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and
-                                literally, it is a task to occupy the generations. And no matter how much progress one
-                                makes, there is always the thrill of just beginning.</p>
-
-                            <blockquote className="blockquote">The dreams of yesterday are the hopes of today and the
-                                reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the
-                                next year and yet far too little for the next ten.
+                            {/*<p dangerouslySetInnerHTML={{__html: this.state.text}}/> /!* Так можно делать только если довеляешь источнику.*!/*/}
+                            <blockquote className="blockquote">Категория: &nbsp;
+                                <Link to="#">{this.state.category}</Link>
                             </blockquote>
-
-                            <p>Spaceflights cannot be stopped. This is not the work of any one man or even a group of
-                                men. It is a historical process which mankind is carrying out in accordance with the
-                                natural laws of human development.</p>
-
-                            <p>Placeholder text by
-                                <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by
-                                <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>.</p>
+                            <p>{this.state.text}</p>
+                            <blockquote className="blockquote">Опубликовал(а) &nbsp;
+                                <Link to="#">{this.state.author}</Link> &nbsp;
+                                {this.state.date_added}
+                            </blockquote>
                         </div>
                     </div>
                 </div>
