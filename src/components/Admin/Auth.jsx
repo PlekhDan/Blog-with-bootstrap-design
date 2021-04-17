@@ -1,4 +1,5 @@
 import React from "react";
+import {host} from "../../config";
 
 export class Auth extends React.Component {
     constructor(props) {
@@ -24,13 +25,16 @@ export class Auth extends React.Component {
         const formData = new FormData();
         formData.append("email", this.state.email);
         formData.append("password", this.state.password);
-        fetch("http://p9152834.beget.tech/hendlerAuth", {
+        fetch(host+"/php/hendlerAuth.php", {
+            credentials: "include",
             method: "POST",
             body: formData
         }).then(response => response.json())
-            .then(result => {
-                console.log(result);
-            })
+            .then(result => console.log(result));
+    }
+
+    componentDidMount() {
+        this.props.changeH1("Авторизация");
     }
 
     render() {
@@ -38,7 +42,9 @@ export class Auth extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-8 col-md-10 mx-auto">
-                        <p>Авторизуйтесь и создайте свою неповторимую статью!</p>
+                        <blockquote className="blockquote text-center mb-5">
+                            Авторизуйтесь и создайте свою неповторимую статью!
+                        </blockquote>
                         <form onSubmit={this.handleSubmit} name="sentMessage" id="contactForm" noValidate>
                             <div className="control-group">
                                 <div className="form-group floating-label-form-group controls">

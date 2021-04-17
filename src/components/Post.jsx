@@ -1,4 +1,5 @@
 import React from "react";
+import {host} from "../config";
 
 export class Post extends React.Component {
 
@@ -16,7 +17,7 @@ export class Post extends React.Component {
         const formData = new FormData;
         formData.append("id", this.props.match.params.id);
         console.log()
-        fetch("http://p9152834.beget.tech/getIdArticle", {
+        fetch(host+"/getIdArticle", {
             method: "POST",
             body: formData
         }).then(response => response.json())

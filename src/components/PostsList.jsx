@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {Post} from "./Post";
+import {host} from "../config";
 
 function PreviewPost(props) {
     return (
@@ -32,7 +33,7 @@ export class PostsList extends React.Component {
     componentDidMount() {
         this.props.changeH1("Главная страница");
         // fetch("http://localhost/php/getArticles.php") //Запрос на локальный сервер на своем компе.
-        fetch("http://p9152834.beget.tech/getArticles")
+        fetch(host+"/getArticles")
             .then(response => response.json())
             .then(result => {
                 this.setState({
